@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Train</string>
+
+    <string name="Login">Login</string>
+
+    <string name="Mail"> Correo </string>
+    <string name="Pass"> Contraseña </string>
+    <string name="Registrar">Registrar</string>
+    <string name="not_log_in">No se pudo iniciar sesion</string>
+
+
+    <string name="item1">Log out</string>
+    <string name="item2">OP2</string>
+    <string name="item3">OP3</string>
+
+
+    <!--texto interfaz -->
+    <string name="Iniciarsesion"> Log In </string>
+    <string name="registrarse"> Sing up </string>
+    <string name="googletext">google</string>
+    <string name="Remenberpass">Forgot password?</string>
+    <!-- -->
+
+    <!--texto interfaz sesion 2-->
+    <string name="Usuario"> Mail </string>
+    <string name="Contraseña"> Password </string>
+    <string name="Ingresar">Log In</string>
+    <!-- -->
+
+    <!--texto interfaz estudiante -->
+    <string name="Welcome"> Welcome </string>
+    <string name="CRUDPrueba"> CRUD test </string>
+    <string name="Realizarprueba"> Make test </string>
+    <string name="VerResultados">View Results</string>
+    <string name="Competencia"> Match </string>
+    <string name="Modificar"> Edit </string>
+    <string name="Instrucciones">Instruccions</string>
+    <string name="Sugerencias">suggestions/Contact us</string>
+    <!-- -->
+
+    <!--texto interfaz adminstrador-->
+    <string name="CRUDProfesor">CRUD professor </string>
+    <string name="CRUDPreguntas">CRUD asks</string>
+    <string name="CRUDEncargado">CRUD mandated</string>
+    <string name="ReestablecerContraseña">Restore password</string>
+    <string name="VerResultadosIns"> View results (institutionals) </string>
+    <!-- -->
+
+    <!--texto interfaz registrarse -->
+    <string name="Correo">Email</string>
+    <string name="Nickname">Nickname</string>
+    <string name="Crear"> Sign Up  </string>
+    <!-- -->
+
+    <!--texto interfaz Instrucciones -->
+    <string name="InfoCrudPrueba">  info about CRUD test </string>
+    <string name="InfoVerResultados">  info about results </string>
+    <!-- -->
+
+    <!--texto interfaz InfoCrudPrueba -->
+    <string name="T1"> Informacion y pantallazos sobre
+        como se ve la app al interactuar
+        con el boton "CRUD prueba"  </string>
+    <string name="T2">Una breve explicacion
+        sobre como administrar sus
+        pruebas, basicamente</string>
+    <!-- -->
+
+    <!--texto interfaz resultados -->
+    <string name="T3">Informacion y pantallazos sobre
+        como se ve la app al interactuar
+        con el boton "ver resultados" </string>
+    <string name="T4">Una breve explicacion
+        sobre como alterar las
+        busquedaspara traer
+        diferentes resultados,
+        basicamente filtros.</string>
+    <!-- -->
+
+    <!--texto interfaz Nickname -->
+    <string name="Old"> Old nickname </string>
+    <string name="New">  New nickname </string>
+    <!-- -->
+
+    <!--texto interfaz Cambiopassword -->
+    <string name="OldP"> Old password </string>
+    <string name="NewP">  New password </string>
+    <!-- -->
+
+    <!--texto interfaz CrudPrueba -->
+    <string name="Crear2"> Create </string>
+    <string name="Actualizar"> Update </string>
+    <string name="Eliminar"> Delete </string>
+    <string name="Ver">  View </string>
+    <!-- -->
+
+    <!--texto interfaz CrearPrueba -->
+    <string name="Creacion">  Modules creation </string>
+    <string name="Titulo"> Tittle, Test name (ID) </string>
+    <!-- -->
+
+    <!--texto interfaz Ver su puntaje -->
+    <string name="T5"> Tabla con resultados de examenes,con su titulo o identificador y su puntaje a lado derecho </string>
+    <string name="Generar"> Create PDF </string>
+    <string name="MasDetalles"> More details </string>
+    <!-- -->
+
+    <!--texto interfaz Mas detalles -->
+    <string name="T6"> Filtros para las busquedas, como fecha, ordernar por puntaje,los que se me ocurran </string>
+    <!-- -->
+
+    <!--texto interfaz Sugerencias -->
+    <string name="Sugerencias2">Send suggestions </string>
+    <!-- -->
+
+    <!--texto interfaz Competencia -->
+    <string name="UsarPr"> Use tests in stock </string>
+    <string name="CrearPr"> Create new test </string>
+    <!-- -->
+
+    <!--texto interfaz Lobby -->
+    <string name="NombrePr"> Name </string>
+    <string name="Competir"> Match </string>
+    <!-- -->
+
+    <!--texto interfaz Pruebamatch -->
+    <string name="T7"> Modules </string>
+    <string name="Matematicas"> Matematicas </string>
+    <string name="Lectura"> Lectura </string>
+    <string name="SC"> Sociales y Ciudadanas </string>
+    <string name="CN"> Ciencias Naturales </string>
+    <string name="ingles"> Ingles </string>
+    <!-- -->
+
+    <!--texto interfaz Modulos -->
+    <string name="ResolverModulo"> Solve module  </string>
+    <!-- -->
+
+    <!--texto interfaz Olvido contraseña -->
+    <string name="Reestablecer"> Restore </string>
+    <!-- -->
+
+    <!--texto interfaz -->
+    <!-- -->
+
+
+
+
+</resources>

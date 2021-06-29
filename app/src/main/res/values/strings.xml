@@ -1,0 +1,148 @@
+<resources>
+    <string name="app_name">Train</string>
+
+    <string name="Login">Login</string>
+
+    <string name="Mail"> Correo </string>
+    <string name="Pass"> Contraseña </string>
+    <string name="Registrar">Registrar</string>
+    <string name="not_log_in">No se pudo iniciar sesion</string>
+
+
+    <string name="item1">Salir</string>
+    <string name="item2">OP2</string>
+    <string name="item3">OP3</string>
+
+
+    <!--texto interfaz -->
+    <string name="Iniciarsesion"> Iniciar sesion </string>
+    <string name="registrarse"> Registrarse </string>
+    <string name="googletext">google</string>
+    <string name="Remenberpass">No recuerdo mi contraseña</string>
+    <!-- -->
+
+    <!--texto interfaz sesion 2-->
+    <string name="Usuario"> Correo electronico </string>
+    <string name="Contraseña"> Contraseña </string>
+    <string name="Ingresar">Ingresar</string>
+    <!-- -->
+
+    <!--texto interfaz estudiante -->
+    <string name="Welcome"> Bienvenido </string>
+    <string name="CRUDPrueba"> CRUD prueba </string>
+    <string name="Realizarprueba"> Realizar prueba </string>
+    <string name="VerResultados">Ver resultados</string>
+    <string name="Competencia"> Compotencia entre estudiantes </string>
+    <string name="Modificar"> Modificar </string>
+    <string name="Instrucciones">Instrucciones</string>
+    <string name="Sugerencias">Sugerencias/Contactenos</string>
+    <!-- -->
+
+    <!--texto interfaz adminstrador-->
+    <string name="CRUDProfesor">CRUD profesor </string>
+    <string name="CRUDPreguntas">CRUD preguntas</string>
+    <string name="CRUDEncargado">CRUD encargado</string>
+    <string name="ReestablecerContraseña">Reestablecer contraseña</string>
+    <string name="VerResultadosIns"> Ver resultados (institucionales) </string>
+    <!-- -->
+
+    <!--texto interfaz registrarse -->
+    <string name="Correo"> Correo electronico</string>
+    <string name="Nickname">Nombre/Alias</string>
+    <string name="Crear"> Crear  </string>
+    <!-- -->
+
+    <!--texto interfaz Instrucciones -->
+    <string name="InfoCrudPrueba">  informacion sobre como hacer CRUD a prueba </string>
+    <string name="InfoVerResultados">  informacion sobre como ver resultados </string>
+    <!-- -->
+
+    <!--texto interfaz InfoCrudPrueba -->
+    <string name="T1"> Informacion y pantallazos sobre como se ve la app al interactuar con el boton "CRUD prueba"  </string>
+    <string name="T2">Una breve explicacion sobre como administrar sus pruebas, basicamente</string>
+    <!-- -->
+
+    <!--texto interfaz resultados -->
+    <string name="T3">Informacion y pantallazos sobre
+        como se ve la app al interactuar
+        con el boton "ver resultados" </string>
+    <string name="T4">Una breve explicacion
+        sobre como alterar las
+        busquedaspara traer
+        diferentes resultados,
+        basicamente filtros.</string>
+    <!-- -->
+
+
+    <!--texto interfaz modificar -->
+
+    <!-- -->
+
+    <!--texto interfaz Nickname -->
+    <string name="Old"> Antiguo nombre/alias </string>
+    <string name="New">  Nuevo nombre/alias </string>
+    <!-- -->
+
+    <!--texto interfaz Cambiopassword -->
+    <string name="OldP"> Antigua contraseña </string>
+    <string name="NewP">  Nueva contraseña </string>
+    <!-- -->
+
+    <!--texto interfaz CrudPrueba -->
+    <string name="Crear2"> Crear </string>
+    <string name="Actualizar"> Actualizar </string>
+    <string name="Eliminar"> Eliminar </string>
+    <string name="Ver">  Ver </string>
+    <!-- -->
+
+    <!--texto interfaz CrearPrueba -->
+    <string name="Creacion"> Creacion de modulos </string>
+    <string name="Titulo"> Titulo o nombre prueba (ID) </string>
+    <!-- -->
+
+    <!--texto interfaz Ver su puntaje -->
+    <string name="T5"> Tabla con resultados de examenes,con su titulo o identificador y su puntaje a lado derecho </string>
+    <string name="Generar"> Generar reporte/Crear PDF </string>
+    <string name="MasDetalles"> Mas detalles </string>
+    <!-- -->
+
+    <!--texto interfaz Mas detalles -->
+    <string name="T6"> Filtros para las busquedas, como fecha, ordernar por puntaje,los que se me ocurran </string>
+    <!-- -->
+
+    <!--texto interfaz Sugerencias -->
+    <string name="Sugerencias2"> Enviar sugerencias </string>
+    <!-- -->
+
+    <!--texto interfaz Competencia -->
+    <string name="UsarPr"> Usar pruebas existentes </string>
+    <string name="CrearPr"> Crear una nueva prueba </string>
+    <!-- -->
+
+    <!--texto interfaz Lobby -->
+    <string name="NombrePr"> Nombre </string>
+    <string name="Competir"> Competir </string>
+    <!-- -->
+
+    <!--texto interfaz Pruebamatch -->
+    <string name="T7"> Modulos </string>
+    <string name="Matematicas"> Matematicas </string>
+    <string name="Lectura"> Lectura </string>
+    <string name="SC"> Sociales y Ciudadanas </string>
+    <string name="CN"> Ciencias Naturales </string>
+    <string name="ingles"> Ingles </string>
+    <!-- -->
+
+    <!--texto interfaz Modulos -->
+    <string name="ResolverModulo"> Resolver Modulo </string>
+    <!-- -->
+
+    <!--texto interfaz Olvido contraseña -->
+    <string name="Reestablecer"> Restablecer </string>
+    <!-- -->
+
+    <!--texto interfaz -->
+    <!-- -->
+
+
+</resources>

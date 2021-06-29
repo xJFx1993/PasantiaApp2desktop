@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.googletemp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.GoogleTemp"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Tempdesktop"></activity>
+        <activity android:name=".Registrarse" />
+        <activity android:name=".Msc" />
+        <activity android:name=".Ming" />
+        <activity android:name=".Mcn" />
+        <activity android:name=".Mlec" />
+        <activity android:name=".Mmat" />
+        <activity android:name=".Prueba" />
+        <activity android:name=".RecuperarPass" />
+        <activity android:name=".PruebaMatch" />
+        <activity android:name=".Lobby" />
+        <activity android:name=".Competencia" />
+        <activity android:name=".Sugerencias" />
+        <activity android:name=".MasDetalles" />
+        <activity android:name=".VerSuPuntaje" />
+        <activity android:name=".VerPrueba" />
+        <activity android:name=".EliminarPrueba" />
+        <activity android:name=".ActualizarPrueba" />
+        <activity android:name=".CrearPrueba" />
+        <activity android:name=".CRUDPrueba" />
+        <activity android:name=".ModificarPassword" />
+        <activity android:name=".Nickname" />
+        <activity android:name=".Modificar" />
+        <activity android:name=".InfoResultados" />
+        <activity android:name=".InfoCRUDPrueba" />
+        <activity android:name=".Instrucciones" />
+        <activity android:name=".SesionEncargado" />
+        <activity android:name=".SesionAdministrador" />
+        <activity android:name=".SesionEstudiante" />
+        <activity android:name=".Sesion2" />
+        <activity android:name=".MainActivity2">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".RG" />
+        <activity android:name=".BigG" />
+        <activity android:name=".Registrar" />
+        <activity android:name=".SignOut" />
+        <activity android:name=".Sesion" />
+        <activity android:name=".Login" />
+        <activity android:name=".MainActivity" />
+    </application>
+
+</manifest>

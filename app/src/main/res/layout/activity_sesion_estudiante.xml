@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SesionEstudiante">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <TextView
+            android:id="@+id/Welcome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Welcome"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+
+            >
+
+            <Button
+                android:id="@+id/BCrudPRueba"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="CrudPrueba"
+                android:text="@string/CRUDPrueba"
+                android:textAllCaps="false"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/BRealizarPrueba"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="RealizarPrueba"
+                android:text="@string/Realizarprueba"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/BVerResultados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="VerResultados"
+                android:text="@string/VerResultados"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/BCompetenciaEstudiantes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="CompetenciaEstudiantes"
+                android:text="@string/Competencia"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/BModificar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="Modificar"
+                android:text="@string/Modificar"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/BInstrucciones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="Instrucciones"
+                android:text="@string/Instrucciones"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/BSugerencias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="Sugerencias"
+                android:text="@string/Sugerencias"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:barrierDirection="top" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

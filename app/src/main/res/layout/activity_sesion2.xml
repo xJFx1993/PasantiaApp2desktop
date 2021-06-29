@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Sesion2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+       android:gravity="center"
+
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/Tsesion2Mail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/Usuario"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/Tsesion2Pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/Contraseña"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/BIngresar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="Ingresar"
+            android:text="@string/Ingresar"
+            android:textAllCaps="false" />
+
+
+        <Button
+            android:id="@+id/button13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="IngresarAdm"
+            android:text="admin" />
+
+        <Button
+            android:id="@+id/button18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="IngresarEnc"
+            android:text="encargado" />
+
+
+        <TextView
+            android:id="@+id/TRemenmberPass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="RPass"
+
+            android:text="@string/Remenberpass"
+            android:textAlignment="center"
+            android:textSize="16sp" />
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
