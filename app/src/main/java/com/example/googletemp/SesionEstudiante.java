@@ -141,12 +141,12 @@ public class SesionEstudiante extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.item1){
-            Toast.makeText(this,"Cerrando sesion",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,"Cerrando sesion",Toast.LENGTH_SHORT).show();
             FirebaseAuth.getInstance().signOut();
             mAuth.signOut();
 
 
-            Intent intent = new Intent(this, BigG.class);
+            Intent intent = new Intent(this, MainActivity2.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NEW_TASK );
             startActivity(intent);
 
