@@ -6,6 +6,9 @@ import android.os.Bundle;
 
 public class tempdesktop2 extends AppCompatActivity {
 
+    private String jf="jotifero";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
