@@ -12,8 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GoogleTemp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".tempdesktop2"></activity>
-        <activity android:name=".Tempdesktop" />
         <activity android:name=".Registrarse" />
         <activity android:name=".Msc" />
         <activity android:name=".Ming" />
