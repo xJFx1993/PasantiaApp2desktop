@@ -194,6 +194,7 @@ public class Registrarse extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
 
+
                     }
                 }
 

@@ -227,7 +227,7 @@ public class MainActivity2 extends AppCompatActivity {
 
                             createUser(mAuth.getCurrentUser().getDisplayName(),mAuth.getCurrentUser().getEmail(),"",mAuth.getCurrentUser().getUid());
                             // (String vname, String vemail, String vpassword, String identificador_F)
-                            Toast.makeText(MainActivity2.this," 2 " + mAuth.getCurrentUser().getUid(),Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(MainActivity2.this," 2 " + mAuth.getCurrentUser().getUid(),Toast.LENGTH_SHORT).show();
 
 
                            // updateUI(null);
@@ -278,6 +278,7 @@ public class MainActivity2 extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+
 
                     }
                 }
