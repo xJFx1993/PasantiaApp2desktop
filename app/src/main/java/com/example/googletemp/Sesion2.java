@@ -60,9 +60,12 @@ public class Sesion2 extends AppCompatActivity {
 
         //utilizarlo para blanquear los campos cada que se navega
 
+        M.setText("registroadmin@gmail.com");
+        P.setText("123456789");
+        /*
         M.setText("Mailgenericoicfes@gmail.com");
         P.setText("123456");
-
+*/
 
     }
 
