@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GoogleTemp"
         android:usesCleartextTraffic="true">
+        <activity android:name=".PRamaJFCommit"></activity>
         <activity android:name=".Registrarse" />
         <activity android:name=".Msc" />
         <activity android:name=".Ming" />
