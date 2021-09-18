@@ -98,6 +98,7 @@
     <!--texto interfaz CrearPrueba -->
     <string name="Creacion">  Modules creation </string>
     <string name="Titulo"> Tittle, Test name (ID) </string>
+    <string name="GuardarCrear"> Create test </string>
     <!-- -->
 
     <!--texto interfaz Ver su puntaje -->
@@ -141,10 +142,21 @@
     <string name="Reestablecer"> Restore </string>
     <!-- -->
 
-    <!--texto interfaz -->
+
+    <!--texto interfaz Ver prueba -->
+    <string name="Verprueba">  View test/s </string>
     <!-- -->
 
+    <!--texto interfaz Eliminar prueba -->
+    <string name="Info1">  Use one of the both field to delete a test </string>
+    <string name="pornombre">  By name</string>
+    <string name="porcodigo">  By Code </string>
+    <string name="info2">  Default value by name </string>
+    <string name="eliminar">  Delete </string>
+    <string name="cargar">  Load </string>
+    <!-- -->
 
-
+    <!--texto interfaz -->
+    <!-- -->
 
 </resources>
