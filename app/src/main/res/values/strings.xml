@@ -98,6 +98,7 @@
     <!--texto interfaz CrearPrueba -->
     <string name="Creacion"> Creacion de modulos </string>
     <string name="Titulo"> Titulo o nombre prueba (ID) </string>
+    <string name="GuardarCrear"> Crear prueba </string>
     <!-- -->
 
     <!--texto interfaz Ver su puntaje -->
@@ -139,6 +140,19 @@
 
     <!--texto interfaz Olvido contraseña -->
     <string name="Reestablecer"> Restablecer </string>
+    <!-- -->
+
+    <!--texto interfaz Ver prueba -->
+    <string name="Verprueba">  Ver prueba/s </string>
+    <!-- -->
+
+    <!--texto interfaz Eliminar prueba -->
+    <string name="Info1">  Utilice uno de los dos campos para eliminar una prueba </string>
+    <string name="pornombre">  Por nombre</string>
+    <string name="porcodigo">  Por codigo </string>
+    <string name="info2">  El valor por defecto es por nombre </string>
+    <string name="eliminar">  Eliminar </string>
+    <string name="cargar">  cargar </string>
     <!-- -->
 
     <!--texto interfaz -->

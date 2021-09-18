@@ -31,8 +31,17 @@
         <activity android:name=".VerPrueba" />
         <activity android:name=".EliminarPrueba" />
         <activity android:name=".ActualizarPrueba" />
-        <activity android:name=".CrearPrueba" />
-        <activity android:name=".CRUDPrueba" />
+        <activity android:name=".CrearPrueba" >
+        </activity>>
+        <activity android:name=".CRUDPrueba" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity android:name=".ModificarPassword" />
         <activity android:name=".Nickname" />
         <activity android:name=".Modificar" />
@@ -44,11 +53,7 @@
         <activity android:name=".SesionEstudiante" />
         <activity android:name=".Sesion2" />
         <activity android:name=".MainActivity2">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".RG" />
         <activity android:name=".BigG" />
