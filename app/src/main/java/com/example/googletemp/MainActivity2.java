@@ -101,6 +101,14 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
 
+        //verificamos si existe una sesion para mandarlo a su pantalla de inicio
+        if (mAuth.getCurrentUser() != null){
+
+            updateUI(mAuth.getCurrentUser().getUid());
+
+        }
+
+
     }
 
     // [START signin]
@@ -122,8 +130,6 @@ public class MainActivity2 extends AppCompatActivity {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                // Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
-
-
                 /*
                   Tnombre.setText(account.getDisplayName());
             Ttexto.setText( account.getEmail());
@@ -134,7 +140,6 @@ public class MainActivity2 extends AppCompatActivity {
                 Toast.makeText(MainActivity2.this,account.getId(),Toast.LENGTH_SHORT).show();*/
 
              //   Toast.makeText(MainActivity2.this," 1 " + account.getId(),Toast.LENGTH_SHORT).show();
-
 
 
 
@@ -151,7 +156,6 @@ public class MainActivity2 extends AppCompatActivity {
     public void IniciarSesion(View r){
         Intent i = new Intent(this, Sesion2.class);
         startActivity(i);
-
     }
 
     public void Registrarse(View r){
@@ -167,8 +171,6 @@ public class MainActivity2 extends AppCompatActivity {
     private void Vistas() {
         BIniciarSesion= (Button)findViewById(R.id.BIniciarSesion);
         GlobalSignInB = (SignInButton)findViewById(R.id.SignIn);
-
-
     }
 
     public void Ingresar (View r){
@@ -252,11 +254,16 @@ public class MainActivity2 extends AppCompatActivity {
 
         };*/
 
+
+
       /*  if (mAuth.getCurrentUser() != null){
             startActivity(new Intent(MainActivity2.this,RG.class ));
             finish();
 
         };*/
+
+
+
         //actualizamos la vista
         ReadUser(identificador_F);
 
