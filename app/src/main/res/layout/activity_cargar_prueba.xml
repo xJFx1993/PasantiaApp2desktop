@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VerPrueba">
+    tools:context=".CargarPrueba">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,26 +19,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Button" />
+        </LinearLayout>
+
         <Button
-            android:id="@+id/Breload"
+            android:id="@+id/button32"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="Call"
-            android:text="@string/Verprueba"
-            android:textAllCaps="false"/>
+            android:text="Button" />
 
-        <TextView
-            android:id="@+id/TVP"
+        <ListView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textSize="16sp"/>
-
-        <ProgressBar
-            android:id="@+id/PBVerPruebas"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
+            android:layout_height="match_parent" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

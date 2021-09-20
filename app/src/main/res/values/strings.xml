@@ -155,6 +155,15 @@
     <string name="cargar">  cargar </string>
     <!-- -->
 
+    <!--texto interfaz Actualizar prueba -->
+    <string name="IDUpdate">  Codigo </string>
+    <string name="NombreUpdate">  Nombre </string>
+
+    <string name="bUpdate1Modificar">  Modificar </string>
+    <string name="bUpdate">  Actualizar </string>
+
+    <!-- -->
+
     <!--texto interfaz -->
     <!-- -->
 

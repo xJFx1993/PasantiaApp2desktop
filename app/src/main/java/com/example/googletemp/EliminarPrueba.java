@@ -2,20 +2,25 @@ package com.example.googletemp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +28,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class EliminarPrueba extends AppCompatActivity {
 
@@ -59,16 +67,125 @@ public class EliminarPrueba extends AppCompatActivity {
     public void CallDelete(View r) {
 
         //||
-        if (ETNombreDeleteV.length()!=0  || ETCodigoDeleteV.length()!=0 ){
+        if (ETNombreDeleteV.length()!=0  || ETCodigoDeleteV.length()!=0 ){//ambos campos
 
             if (ETNombreDeleteV.length()!=0 && ETCodigoDeleteV.length()!=0){
-                Toast.makeText(this,"Estamos en el if que tocaria eliminar por nombre ambos campos digitados", Toast.LENGTH_SHORT).show();
-            }else if (ETCodigoDeleteV.length()!=0){
-                Toast.makeText(this,"Por codigo", Toast.LENGTH_SHORT).show();
-                String URLc="";
-            }else if (ETNombreDeleteV.length()!=0){
-                Toast.makeText(this,"Por Nombre", Toast.LENGTH_SHORT).show();
-                String URLn="";
+                //Toast.makeText(this,"Estamos en el if que tocaria eliminar por nombre ambos campos digitados", Toast.LENGTH_SHORT).show();
+                String URLn="http://192.168.0.100/android/prueba/delete-N.php";
+
+                //creamos la prueba en la base de datos
+                StringRequest SR = new StringRequest(
+                        Request.Method.POST,
+                        URLn,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                //Toast.makeText(Registrarse.this, "Correct", Toast.LENGTH_SHORT).show();
+                                //updateUI(identificador_F);
+
+                                //metodo consultar id prueba y mostrarlo en un toast y edittext
+                                //consultar_id_prueba();
+
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+
+                            }
+                        }
+
+                ){
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String,String> params =  new HashMap<>();
+                        params.put ("Nombre", ETNombreDeleteV.getText().toString());
+                        return params;
+                    }
+                };
+
+                RQ.add(SR);
+                ETNombreDeleteV.setText("");
+            }else if (ETCodigoDeleteV.length()!=0){//por codigo
+                //Toast.makeText(this,"Por codigo", Toast.LENGTH_SHORT).show();
+                String URLc="http://192.168.0.100/android/prueba/delete-C.php";
+
+                //creamos la prueba en la base de datos
+                StringRequest SR = new StringRequest(
+                        Request.Method.POST,
+                        URLc,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                //Toast.makeText(Registrarse.this, "Correct", Toast.LENGTH_SHORT).show();
+                                //updateUI(identificador_F);
+
+                                //metodo consultar id prueba y mostrarlo en un toast y edittext
+                              //  consultar_id_prueba();
+
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+
+                            }
+                        }
+
+                ){
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String,String> params =  new HashMap<>();
+                        params.put ("id", String.valueOf(ETCodigoDeleteV.getText()));
+
+                        return params;
+                    }
+                };
+
+                RQ.add(SR);
+                ETCodigoDeleteV.setText("");
+
+            }else if (ETNombreDeleteV.length()!=0){//por nombre
+              //  Toast.makeText(this,"Por Nombre", Toast.LENGTH_SHORT).show();
+                String URLn="http://192.168.0.100/android/prueba/delete-N.php";
+
+                //creamos la prueba en la base de datos
+                StringRequest SR = new StringRequest(
+                        Request.Method.POST,
+                        URLn,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                //Toast.makeText(Registrarse.this, "Correct", Toast.LENGTH_SHORT).show();
+                                //updateUI(identificador_F);
+
+                                //metodo consultar id prueba y mostrarlo en un toast y edittext
+                                //consultar_id_prueba();
+
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+
+                            }
+                        }
+
+                ){
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String,String> params =  new HashMap<>();
+                        params.put ("Nombre", ETNombreDeleteV.getText().toString());
+                        return params;
+                    }
+                };
+
+                RQ.add(SR);
+                ETNombreDeleteV.setText("");
+
             }
 
         }else{
@@ -123,9 +240,6 @@ public class EliminarPrueba extends AppCompatActivity {
         Pruebas = (TextView) findViewById(R.id.TVpruebasDelete);
         Pruebas.setMovementMethod (new ScrollingMovementMethod());
 
-        EditText ETNombreDelete =null;
-        EditText   ETCodigoDelete =null;
-
         ETNombreDeleteV = (EditText) findViewById(R.id.ETNombreDelete);
         ETCodigoDeleteV = (EditText) findViewById(R.id.ETCodigoDelete);
     }
@@ -179,4 +293,36 @@ public class EliminarPrueba extends AppCompatActivity {
         CargarPruebas(ID_BD);
 
     }
+
+    //menu over flow
+    //metodo para mostrar y ocultar el menu
+    public boolean onCreateOptionsMenu (Menu menu){
+        getMenuInflater().inflate(R.menu.overflow, menu);
+        return true;
+    }
+
+    //metodo para asignar las funciones correspondientes a las opciones
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        if (id == R.id.item1){
+            //Toast.makeText(this,"Cerrando sesion",Toast.LENGTH_SHORT).show();
+            FirebaseAuth.getInstance().signOut();
+            mAuth.signOut();
+
+
+            Intent intent = new Intent(this, MainActivity2.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NEW_TASK );
+            startActivity(intent);
+
+
+        }/*else if (id == R.id.item2){
+            Toast.makeText(this,"OP2",0).show();
+        }else if (id == R.id.item3){
+            Toast.makeText(this,"OP3",0).show();
+        }*/
+        //palabra revervada super de java
+        return super.onOptionsItemSelected(item);
+    }
+
 }

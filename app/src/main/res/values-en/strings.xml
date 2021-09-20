@@ -156,6 +156,15 @@
     <string name="cargar">  Load </string>
     <!-- -->
 
+    <!--texto interfaz Actualizar prueba -->
+    <string name="IDUpdate">  Code </string>
+    <string name="NombreUpdate">  Name</string>
+
+    <string name="bUpdate1Modificar">  Edit </string>
+    <string name="bUpdate">  Update </string>
+
+    <!-- -->
+
     <!--texto interfaz -->
     <!-- -->
 
