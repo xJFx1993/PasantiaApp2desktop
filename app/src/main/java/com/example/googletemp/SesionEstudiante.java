@@ -70,7 +70,7 @@ public class SesionEstudiante extends AppCompatActivity {
     }
 
     public void RealizarPrueba (View r){
-        Intent i = new Intent(this, Prueba.class);
+        Intent i = new Intent(this, CargarPrueba.class);
         startActivity(i);
     }
 

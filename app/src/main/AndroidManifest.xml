@@ -12,7 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GoogleTemp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CargarPrueba"></activity>
+        <activity android:name=".Preguntas"></activity>
+        <activity android:name=".CargarPrueba">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".segundaPRamaJFcommit" />
         <activity android:name=".PRamaJFCommit" />
         <activity android:name=".PruebaRamaMainCommit" />
@@ -35,14 +42,8 @@
         <activity android:name=".VerPrueba" />
         <activity android:name=".EliminarPrueba" />
         <activity android:name=".ActualizarPrueba" />
-        <activity android:name=".CrearPrueba"></activity>
-        <activity android:name=".CRUDPrueba">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".CrearPrueba" />
+        <activity android:name=".CRUDPrueba"></activity>
         <activity android:name=".ModificarPassword" />
         <activity android:name=".Nickname" />
         <activity android:name=".Modificar" />

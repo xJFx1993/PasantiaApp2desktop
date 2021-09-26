@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CargarPrueba">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,30 +24,42 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/ETCodigo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:hint="@string/IDUpdate"
+                android:inputType="number" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/BidUpdate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:onClick="BuscarById"
+                android:text="@string/BuscarCargarP"
+                android:textAllCaps="false" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/button32"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:orientation="horizontal"/>
+
+        <Button
+            android:id="@+id/BcargarUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="Call"
+            android:text="@string/cargar"
+            android:textAllCaps="false" />
 
         <ListView
+            android:id="@+id/LVCargarPruebas"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
