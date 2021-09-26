@@ -91,8 +91,7 @@ public class CrearPrueba extends AppCompatActivity {
 
     }
 
-
-
+    //Este es el boton crear prueba el onClick
     // donde hacemos el insert a la tabla prueba
     //un request
     public void Creando_prueba(View r){
@@ -105,7 +104,6 @@ public class CrearPrueba extends AppCompatActivity {
             }
             //aqui va el request que hace el insert
 
-
             //creamos la prueba en la base de datos
             StringRequest SR = new StringRequest(
                     Request.Method.POST,
@@ -113,8 +111,6 @@ public class CrearPrueba extends AppCompatActivity {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            //Toast.makeText(Registrarse.this, "Correct", Toast.LENGTH_SHORT).show();
-                            //updateUI(identificador_F);
 
                             //metodo consultar id prueba y mostrarlo en un toast y edittext
                             consultar_id_prueba();
@@ -147,10 +143,6 @@ public class CrearPrueba extends AppCompatActivity {
             Toast.makeText(this, NombreP.getText() +" Creado" ,Toast.LENGTH_SHORT).show();
             NombreP.setText("");
 
-
-
-           // Toast.makeText(this,"ejecucion CreandoPrueba" + MaxPM[0],Toast.LENGTH_SHORT).show();
-            //Traer en un arreglo todas las preguntas de la BD, solamente los ID (id_pregunta)
         }else{
             Toast.makeText(this,"Nombre prueba",Toast.LENGTH_SHORT).show();
             PB.setVisibility(View.GONE);
@@ -158,8 +150,6 @@ public class CrearPrueba extends AppCompatActivity {
         }
 
     }
-
-
     // donde consultamos el id de la prueeba insertada, una consulta
     //un request
     private void consultar_id_prueba() {
@@ -172,19 +162,8 @@ public class CrearPrueba extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        String name, aux;
                         try {
-                            //name = response.getString("Nombre");
-                            /*aux= Globalname.getText().toString() ;
-                            name = aux + " " +name;
-
-                            Globalname.setText(name);*/
-                            //ID_BD = response.getInt("Id_persona");
                             Creando_Modulos(response.getInt("id_prueba"));
-
-                            //response.getInt("id_prueba")
-
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -204,8 +183,6 @@ public class CrearPrueba extends AppCompatActivity {
     }
 
     private void Creando_Modulos(int id_prueba) {
-        //Toast.makeText(this,"Creando_Modulos id prueba " + id_prueba,Toast.LENGTH_SHORT).show();
-       // ETP1V.setText(String.valueOf(id_prueba));
 
         //Tenemos el id de la prueba
         //creacion de modulos
@@ -220,7 +197,7 @@ public class CrearPrueba extends AppCompatActivity {
 
             while ((i<=5) && TRUE){
             //es el request el metodo que contiene el request
-                ValoresMaximo3(1,id_prueba);
+                ValoresMaximo3(i,id_prueba);
                 i=i+1;
 
             }
@@ -228,10 +205,6 @@ public class CrearPrueba extends AppCompatActivity {
 
 
     private void ValoresMaximo3(int i,int id_prueba) {
-        //ejecutar y dejar termimnar una consulta con modulo 1 y 2
-
-        //https
-        //http
 
         //ArregloPsMaxRandModu
         String JSON_URL = "http://192.168.0.100/android/Prueba/ArregloPsMaxRandModu.php?i="+i;
@@ -240,9 +213,6 @@ public class CrearPrueba extends AppCompatActivity {
             public void onResponse(JSONArray response) {
 
 
-               // String tama= String.valueOf(response.length());
-              //  EDTMV.setText("Arrary d emostrar que al menos esta entrando");
-                //EDTMV.setText(tama);
                 MaxPM[i-1]=response.length();
                 ArregloPreguntasIds = new int[MaxPM[i-1]];
 
@@ -256,10 +226,8 @@ public class CrearPrueba extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
         //Toast.makeText(this,"ejecucion" + MaxPM[0],Toast.LENGTH_SHORT).show();
-        int asgasg=-1;
-      /*  for (int a1=0 ;a1<ArregloPreguntasIds.length;a1++){
-Toast.makeText(this,"asasf VE  "+ ArregloPreguntasIds[a1],Toast.LENGTH_SHORT).show();
-        }*/
+
+
 
     }
 
@@ -272,10 +240,10 @@ Toast.makeText(this,"asasf VE  "+ ArregloPreguntasIds[a1],Toast.LENGTH_SHORT).sh
         for (int JF=0 ; JF<response.length();JF++){
 
             try {
-                JSONObject objeto = new JSONObject(String.valueOf(response.getJSONObject(JF)));
+               // JSONObject objeto = new JSONObject(String.valueOf(response.getJSONObject(JF)));
                 JSONObject objeto2 = new JSONObject(response.get(JF).toString());
                 //ArregloPreguntasIds[JF] = objeto2.getString("id_pregunta");
-                String numetoS = objeto2.getString("id_pregunta");
+               // String numetoS = objeto2.getString("id_pregunta");
 
 
                 ArregloPreguntasIds[JF]= objeto2.getInt("id_pregunta");
@@ -284,18 +252,12 @@ Toast.makeText(this,"asasf VE  "+ ArregloPreguntasIds[a1],Toast.LENGTH_SHORT).sh
                 e.printStackTrace();
             }
 
-
         }
-
         //Toast.makeText(this,"Lleega hasta creando variables los random faltan" ,Toast.LENGTH_SHORT).show();
 
         //vamos a generar los valores randon
         valores2(i,ArregloPreguntasIds,id_prueba);
 
-
-       // Toast.makeText(this,"Estoy en el response" + MaxPM[0],Toast.LENGTH_SHORT).show();
-
-       // ETP1V.setText(String.valueOf(ArregloPreguntasIds[0]));
 
     }
 
@@ -305,6 +267,10 @@ Toast.makeText(this,"asasf VE  "+ ArregloPreguntasIds[a1],Toast.LENGTH_SHORT).sh
         NR= new int[10];
         //"bandera" para controlar el ciclo la variable x
         int x=0;
+
+        for (int xx =0 ;xx<NR.length;xx++){
+            NR[xx]=-1;
+        }
 
         //Toast.makeText(this,"estamos en el metodo random  ",Toast.LENGTH_SHORT).show();
 
@@ -320,18 +286,20 @@ Toast.makeText(this,"asasf VE  "+ ArregloPreguntasIds[a1],Toast.LENGTH_SHORT).sh
         //Tenemos los diez numeros aleatorios para elegir el id
         //Toast.makeText(this,"estamos en el metodo random  " + NR[2],Toast.LENGTH_SHORT).show();
 
+      /*  for (int xx =0 ;xx<NR.length;xx++){
+            Toast.makeText(this, xx+1 +": estamos en el metodo random modulo " + i  +" "+ NR[xx],Toast.LENGTH_SHORT).show();
+        }*/
+
         //asociamos en insertamos
         int x2=0;
         String URL2 = "http://192.168.0.100/android/relacionpruebapregunta/save.php";
        while (x2 <10 ){
-
-           //ArregloPreguntasIds[NR[x2]];
-
+           int Aux2= NR[x2];
 
            //aqui va el request que hace el insert de loa relacion prueba pregunta
 
-
            //creamos la relacion en la base de datos
+           int ij = x2;
            int finalX = x2;
            StringRequest SR2 = new StringRequest(
                    Request.Method.POST,
@@ -339,11 +307,7 @@ Toast.makeText(this,"asasf VE  "+ ArregloPreguntasIds[a1],Toast.LENGTH_SHORT).sh
                    new Response.Listener<String>() {
                        @Override
                        public void onResponse(String response) {
-                           //Toast.makeText(Registrarse.this, "Correct", Toast.LENGTH_SHORT).show();
-                           //updateUI(identificador_F);
-
-                          // message (response);
-//                           consultar_id_prueba();
+                          // message (response,i, finalX);
 
                        }
                    },
@@ -360,19 +324,27 @@ Toast.makeText(this,"asasf VE  "+ ArregloPreguntasIds[a1],Toast.LENGTH_SHORT).sh
                protected Map<String, String> getParams() throws AuthFailureError {
                    Map<String,String> params =  new HashMap<>();
                    params.put ("id_prueba", String.valueOf(id_prueba));
-                   params.put ("id_pregunta", String.valueOf(ArregloPreguntasIds[NR[finalX]]));
+                   params.put ("id_pregunta", String.valueOf(ArregloPreguntasIds[Aux2]));
                    return params;
                }
            };
 
            RQ.add(SR2);
 
-
-
            x2=x2+1;
 
         }
 
+    }
+
+    private void message(String response, int i , int x3) {
+        if (response.equals("The Relation was created successfully")){
+            Toast.makeText(this, x3+1 +": success modulo " + i +" "  ,Toast.LENGTH_SHORT).show();
+
+        }else if (response.equals("Error")){
+            Toast.makeText(this, x3+1 +": Error modulo" + i +" ",Toast.LENGTH_SHORT).show();
+
+        }
     }
 
 
@@ -465,11 +437,7 @@ Toast.makeText(this,"asasf VE  "+ ArregloPreguntasIds[a1],Toast.LENGTH_SHORT).sh
             startActivity(intent);
 
 
-        }/*else if (id == R.id.item2){
-            Toast.makeText(this,"OP2",0).show();
-        }else if (id == R.id.item3){
-            Toast.makeText(this,"OP3",0).show();
-        }*/
+        }
         //palabra revervada super de java
         return super.onOptionsItemSelected(item);
     }

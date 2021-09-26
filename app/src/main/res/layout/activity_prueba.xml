@@ -21,6 +21,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/TVnombrePrueba"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="TextView"
+            android:textSize="16sp"/>
+
+        <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,5 +79,18 @@
             android:onClick="Ingles"
             android:text="@string/ingles"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnpruebastmp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="imprimir"
+            android:text="Imprimir" />
+
+        <ProgressBar
+            android:id="@+id/PGobj"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
