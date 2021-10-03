@@ -127,11 +127,11 @@
 
     <!--texto interfaz Pruebamatch -->
     <string name="T7"> Modules </string>
-    <string name="Matematicas"> Matematicas </string>
-    <string name="Lectura"> Lectura </string>
-    <string name="SC"> Sociales y Ciudadanas </string>
-    <string name="CN"> Ciencias Naturales </string>
-    <string name="ingles"> Ingles </string>
+    <string name="Matematicas"> Maths </string>
+    <string name="Lectura"> Critical Reading </string>
+    <string name="SC"> Social and Citizens </string>
+    <string name="CN"> Natural Sciences </string>
+    <string name="ingles"> English </string>
     <!-- -->
 
     <!--texto interfaz Modulos -->

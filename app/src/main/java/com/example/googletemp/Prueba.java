@@ -161,11 +161,11 @@ public class Prueba extends AppCompatActivity {
                             CountG=aux;
                             count2[0] =aux;
 
-                            //aqui es ddonde viene la logica de reparar
-                            if(CountG!=50){
+                           //aqui es ddonde viene la logica de reparar
+                         /*   if(CountG!=50){ // response.getInt("count(*)")!=50 // CountG!=50
                                 //botones disable y reparar
                                 reparar();
-                            }
+                            }*/
 
                         } catch (JSONException e) {
                             e.printStackTrace();
