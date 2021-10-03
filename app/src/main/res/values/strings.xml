@@ -128,7 +128,7 @@
     <!--texto interfaz Pruebamatch -->
     <string name="T7"> Modulos </string>
     <string name="Matematicas"> Matematicas </string>
-    <string name="Lectura"> Lectura </string>
+    <string name="Lectura"> Lectura Critica</string>
     <string name="SC"> Sociales y Ciudadanas </string>
     <string name="CN"> Ciencias Naturales </string>
     <string name="ingles"> Ingles </string>

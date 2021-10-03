@@ -17,6 +17,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,6 +50,8 @@ public class Preguntas extends AppCompatActivity {
 
     String modulo=null;
 
+    int CountM=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,8 +79,62 @@ public class Preguntas extends AppCompatActivity {
         Toast.makeText(this,"Valor modulo " + modulo, Toast.LENGTH_SHORT).show();
         Toast.makeText(this,"Valor CountGS " + CountGS, Toast.LENGTH_SHORT).show();
 
+        CountM = metodoCountPreMod(modulo,IDP);
+
         Var = metodo(IDP, Integer.parseInt(modulo));
         //Almacena las preguntas [][]
+
+    }
+
+    private int metodoCountPreMod(String modulo, String idp) {
+
+        String URl22 ="http://192.168.0.100/android/relacionpruebapregunta/count-P-M.php?id="+IDP+"&Mo="+modulo;
+
+
+        JsonObjectRequest jsOR = new JsonObjectRequest(
+                Request.Method.GET,
+                URl22,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        int aux=0;
+                        try {
+
+                            // ID_BD = response.getInt("Id_persona");
+                            //return ID_BD;
+                            //entrnadoenelresponse(response);
+                            //CargarPruebas(ID_BD);
+                            //count(*)
+                            aux =response.getInt("count(*)");
+                            CountM=aux;
+                            //count2[0] =aux;
+
+                            //aqui es ddonde viene la logica de reparar
+                         /*   if(CountG!=50){ // response.getInt("count(*)")!=50 // CountG!=50
+                                //botones disable y reparar
+                                reparar();
+                            }*/
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+
+        );
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsOR);
+
+        return CountM;
+
 
     }
 
@@ -105,6 +162,7 @@ public class Preguntas extends AppCompatActivity {
             public void onResponse(JSONArray response) {
                 //insertando_pruebas(response); en la variable
                 Var = DatosResponse(response);
+                InsertarPreguntas(response);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -117,6 +175,52 @@ public class Preguntas extends AppCompatActivity {
 
         return Var;
     }
+
+    //insertar las preguntas en el layout vertical
+    private void InsertarPreguntas(JSONArray response) {
+        //creacion de objetos dinamicos
+        //aqui dentro van los if
+        for (int i1 =0 ; i1<response.length();i1++){
+
+            int tipoPregunta=-1;
+            String SuperEnun, Enun = null;
+            int IDPregunta=-1;
+            int IDP=-1;
+
+
+            try {
+                //JSONObject objeto = new JSONObject(String.valueOf(response.getJSONObject(i)));
+                JSONObject objeto2 = new JSONObject(response.get(i1).toString());
+                //ArregloPreguntasIds[JF] = objeto2.getString("id_pregunta");
+
+               /* Pruebas.append(i+1 + " :");
+                Pruebas.append("    Nombre prueba: "+objeto2.getString("Nombre"));
+                // Pruebas.append("    Codigo: "+objeto2.getString("id_prueba"));
+                Pruebas.append("\n");*/
+                IDP = Integer.parseInt(objeto2.getString("id_pregunta"));
+                SuperEnun = objeto2.getString("Super_enunciado");
+                Enun = objeto2.getString("Enunciado");
+               // Aux[3][i] = objeto2.getString("modulo");
+               // Aux[4][i] = objeto2.getString("Tipo_pregunta");
+
+                tipoPregunta= Integer.parseInt(objeto2.getString("Tipo_pregunta"));
+
+                if (tipoPregunta==0){
+                    //individual, simple, sencilla
+                    logicasencilla(IDP,Enun);
+                }else{
+                    logicaCompuesta(IDP,SuperEnun,Enun);
+                }
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    }
+
 
     //Aqui es doonde llenamos el arreglo (matriz)
     private String[][] DatosResponse(JSONArray response) {
@@ -147,10 +251,12 @@ public class Preguntas extends AppCompatActivity {
         }
 
 
+
+
         return Aux;
     }
 
-    public  void imprimir(View r) {
+    public void imprimir(View r) {
 
         String [][] copia = Var.clone();
         //Toast.makeText(this,"tamaño arreglo "+ Var.length, Toast.LENGTH_SHORT).show();
@@ -160,7 +266,9 @@ public class Preguntas extends AppCompatActivity {
         //Count = Metodocountconsulta();
 
         CountG= Integer.parseInt(CountGS);
+        //CountM
         Toast.makeText(this,"Real tamaño arreglo "+ CountGS, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"tamaño arreglo por modulos "+ CountM, Toast.LENGTH_SHORT).show();
 
              /*  for (int i = 0 ; i<Var.length;i++){
                 for (int j = 0 ; j<50;j++){
@@ -175,7 +283,7 @@ public class Preguntas extends AppCompatActivity {
 
         try{
 
-            for (int j = 0 ; j<CountG;j++){
+            for (int j = 0 ; j<CountM;j++){
                 //length 5
                 for (int i = 0 ; i<Var.length;i++){
                     z=j;
@@ -185,7 +293,7 @@ public class Preguntas extends AppCompatActivity {
 
                     if(i==0){
                         Toast.makeText(this,
-                                "id_prueba, "+ Var[i][j] + " - "
+                                "id_pregunta, "+ Var[i][j] + " - "
 
                                 , Toast.LENGTH_SHORT).show();
                     }else if (i==3){
@@ -211,6 +319,11 @@ public class Preguntas extends AppCompatActivity {
         }
 
 
+
+    }
+
+    //request insert para almacenar las respuestas seleccionadas
+    public void AlmacenarRepuestas(View r){
 
     }
 

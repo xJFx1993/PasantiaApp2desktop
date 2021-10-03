@@ -182,6 +182,7 @@ public class CrearPrueba extends AppCompatActivity {
 
     }
 
+    //aqui estan los ciclos
     private void Creando_Modulos(int id_prueba) {
 
         //Tenemos el id de la prueba
@@ -206,6 +207,7 @@ public class CrearPrueba extends AppCompatActivity {
 
     private void ValoresMaximo3(int i,int id_prueba) {
 
+        //traemos todas las preguntas de un modulo especifico 1, 2, 3.
         //ArregloPsMaxRandModu
         String JSON_URL = "http://192.168.0.100/android/Prueba/ArregloPsMaxRandModu.php?i="+i;
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, JSON_URL, null, new Response.Listener<JSONArray>() {
@@ -309,6 +311,7 @@ public class CrearPrueba extends AppCompatActivity {
                        public void onResponse(String response) {
                           // message (response,i, finalX);
 
+
                        }
                    },
                    new Response.ErrorListener() {
@@ -330,11 +333,26 @@ public class CrearPrueba extends AppCompatActivity {
            };
 
            RQ.add(SR2);
-
            x2=x2+1;
+
 
         }
 
+    }
+    /*
+    if (!(buscarRepetido(NR,valorEnteroR))){
+                NR[x]=valorEnteroR;
+                x= x +1;
+            }
+    */
+
+    private boolean buscarRepetido(int[] nr, int valorEnteroR2) {
+        for (int a1=0 ;a1<nr.length;a1++){
+            if (nr[a1] == valorEnteroR2){
+                return true;
+            }
+        }
+        return false;
     }
 
     private void message(String response, int i , int x3) {
@@ -406,14 +424,7 @@ public class CrearPrueba extends AppCompatActivity {
 
     }
 
-    private boolean buscarRepetido(int[] nr, int valorEnteroR2) {
-        for (int a1=0 ;a1<nr.length;a1++){
-            if (nr[a1] == valorEnteroR2){
-                return true;
-            }
-        }
-        return false;
-    }
+
 
     //menu over flow
     //metodo para mostrar y ocultar el menu

@@ -36,8 +36,6 @@ public class CargarPrueba extends AppCompatActivity {
     EditText ETCodigoV=null;
     ListView LVCargarPruebasV=null;
 
-
-
     private FirebaseAuth mAuth;
     RequestQueue RQ;
     int ID_BD=0;
@@ -56,6 +54,8 @@ public class CargarPrueba extends AppCompatActivity {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         //tenemos el id del usuario de la base de datos
         ID_BD=ReadUser(mAuth.getCurrentUser().getUid());
+
+
 
         //Logida del programa
         //Cada que se presione
@@ -378,6 +378,7 @@ public class CargarPrueba extends AppCompatActivity {
                 // Pruebas.append("    Codigo: "+objeto2.getString("id_prueba"));
                 Pruebas.append("\n");*/
 
+
                 variable [0][i]=objeto2.getString("Nombre");
                 variable [1][i]=objeto2.getString("id_prueba");
 
@@ -402,6 +403,7 @@ public class CargarPrueba extends AppCompatActivity {
         LVCargarPruebasV = (ListView) findViewById(R.id.LVCargarPruebas);
         ETCodigoV = (EditText) findViewById(R.id.ETCodigo);
         ETCodigoV.setText("");
+
        // ETCodigoV.setEnabled(false);
     }
     //menu over flow
