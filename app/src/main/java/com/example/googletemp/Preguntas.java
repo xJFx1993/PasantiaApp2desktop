@@ -3,10 +3,13 @@ package com.example.googletemp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -28,6 +31,8 @@ import org.json.JSONObject;
 
 public class Preguntas extends AppCompatActivity {
 
+
+    //InsertarPreguntas es el metodo que realmente ahi que trabajar
     LinearLayout LYV=null;
     LinearLayout LYinterno=null;
 
@@ -65,7 +70,7 @@ public class Preguntas extends AppCompatActivity {
 
         ;
 
-        vistas();
+       vistas();
 
         mAuth = FirebaseAuth.getInstance();
         RQ= Volley.newRequestQueue(this);
@@ -74,23 +79,83 @@ public class Preguntas extends AppCompatActivity {
         // ID_BD=ReadUser(mAuth.getCurrentUser().getUid());
         //ID de la prueba IDP
 
-        Toast.makeText(this,"Valor NombreP " + NombreP, Toast.LENGTH_SHORT).show();
+    /*    Toast.makeText(this,"Valor NombreP " + NombreP, Toast.LENGTH_SHORT).show();
         Toast.makeText(this,"Valor IDP " + IDP, Toast.LENGTH_SHORT).show();
         Toast.makeText(this,"Valor modulo " + modulo, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this,"Valor CountGS " + CountGS, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Valor CountGS " + CountGS, Toast.LENGTH_SHORT).show();*/
 
-        CountM = metodoCountPreMod(modulo,IDP);
 
-        Var = metodo(IDP, Integer.parseInt(modulo));
+        //InsertarPreguntas es el metodo que realmente ahi que trabajar
+        //ni se que hace esto para que count M , contar modulo que, alguna variable que cuenta algo
+        //linea
+
+        //CountM = metodoCountPreMod(modulo,IDP);
+        //el que nos interesa aparentemente es "metodo"
+        //linea
+
+        //Var = metodo(IDP, Integer.parseInt(modulo));
         //Almacena las preguntas [][]
+        //al final el almacenacmiento en Var no va a ser muy util
+
+        metodo2(IDP, Integer.parseInt(modulo));
+
+
+
+        CreandoBoton();
+
+        CreandoBoton();
+        CreandoBoton();
 
     }
+
+    private void CreandoBoton() {
+
+
+
+        //creacion de los text view al menos meter los enunciados
+        Button BAuxD = new Button(this);
+       // TextView TVDinamico = new TextView(this);
+    //    TVDinamico.setMovementMethod(new ScrollingMovementMethod());
+
+        BAuxD.setText("BAuxD");
+               // BAuxD.setId(2);
+        BAuxD.setTextColor(Color.BLACK);
+
+        BAuxD.setOnClickListener(new ButtonsOnClickListener(BAuxD.getId()));
+
+        LYinterno.addView(BAuxD);
+
+    }
+
+    class ButtonsOnClickListener implements View.OnClickListener{
+        public ButtonsOnClickListener(int numButton) {
+            this.numButton = numButton;
+        }
+
+        int numButton;
+
+        @Override
+        public void onClick(View v) {
+
+            Button b = (Button) v;
+
+            Toast.makeText(getApplicationContext(),"Pulsado " +  b.getText(),Toast.LENGTH_SHORT).show();
+
+            String mensaje="";
+            if (numButton%2==0)
+                mensaje="Boton PAR "+String.format("%02d", numButton );
+            else
+                mensaje="Boton IMPAR "+String.format("%02d", numButton );
+
+            Toast.makeText(getApplicationContext(),mensaje,Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
 
     private int metodoCountPreMod(String modulo, String idp) {
 
         String URl22 ="http://192.168.0.100/android/relacionpruebapregunta/count-P-M.php?id="+IDP+"&Mo="+modulo;
-
-
         JsonObjectRequest jsOR = new JsonObjectRequest(
                 Request.Method.GET,
                 URl22,
@@ -151,6 +216,7 @@ public class Preguntas extends AppCompatActivity {
 
     }
 
+    //InsertarPreguntas es el metodo que realmente ahi que trabajar
     private String[][] metodo(String IDP, int Modulo) {
 
         //& Caracter para concatenar
@@ -176,10 +242,38 @@ public class Preguntas extends AppCompatActivity {
         return Var;
     }
 
+    //InsertarPreguntas es el metodo que realmente ahi que trabajar
+    private void metodo2(String IDP, int Modulo) {
+
+        //& Caracter para concatenar
+
+        //elige/atrapa las preguntas de una prueba
+        String URl2 ="http://192.168.0.100/android/Pregunta/CargarStringArregloPreguntasModulo.php?id="+IDP+"&Mo="+Modulo;
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, URl2, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                //insertando_pruebas(response); en la variable
+                Var = DatosResponse(response);
+                InsertarPreguntas(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        });
+        //RequestQueue requestQueue = Volley.newRequestQueue(this);
+        RequestQueue requestQueue2 = Volley.newRequestQueue(this);
+        requestQueue2.add(jsonArrayRequest);
+
+
+    }
+
+    //InsertarPreguntas es el metodo que realmente ahi que trabajar
     //insertar las preguntas en el layout vertical
     private void InsertarPreguntas(JSONArray response) {
         //creacion de objetos dinamicos
         //aqui dentro van los if
+
         for (int i1 =0 ; i1<response.length();i1++){
 
             int tipoPregunta=-1;
@@ -187,30 +281,72 @@ public class Preguntas extends AppCompatActivity {
             int IDPregunta=-1;
             int IDP=-1;
 
-
             try {
                 //JSONObject objeto = new JSONObject(String.valueOf(response.getJSONObject(i)));
                 JSONObject objeto2 = new JSONObject(response.get(i1).toString());
                 //ArregloPreguntasIds[JF] = objeto2.getString("id_pregunta");
 
-               /* Pruebas.append(i+1 + " :");
-                Pruebas.append("    Nombre prueba: "+objeto2.getString("Nombre"));
-                // Pruebas.append("    Codigo: "+objeto2.getString("id_prueba"));
-                Pruebas.append("\n");*/
                 IDP = Integer.parseInt(objeto2.getString("id_pregunta"));
                 SuperEnun = objeto2.getString("Super_enunciado");
                 Enun = objeto2.getString("Enunciado");
-               // Aux[3][i] = objeto2.getString("modulo");
-               // Aux[4][i] = objeto2.getString("Tipo_pregunta");
+                // Aux[3][i] = objeto2.getString("modulo");
+                // Aux[4][i] = objeto2.getString("Tipo_pregunta");
 
                 tipoPregunta= Integer.parseInt(objeto2.getString("Tipo_pregunta"));
 
-                if (tipoPregunta==0){
-                    //individual, simple, sencilla
-                    logicasencilla(IDP,Enun);
-                }else{
-                    logicaCompuesta(IDP,SuperEnun,Enun);
-                }
+
+                String URlNum ="http://192.168.0.100/android/Pregunta/countimagenesPregunta.php?id="+IDP;
+
+                int finalTipoPregunta = tipoPregunta;
+                int finalIDP = IDP;
+                String finalEnun = Enun;
+                int finalI = i1;
+                JsonObjectRequest jsORNum = new JsonObjectRequest(
+                        Request.Method.GET,
+                        URlNum,
+                        null,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                int aux=-1;
+                                try {
+
+                                    // ID_BD = response.getInt("Id_persona");
+                                    //return ID_BD;
+                                    //entrnadoenelresponse(response);
+                                    //CargarPruebas(ID_BD);
+                                    //count(*)
+                                    aux =response.getInt("count(*)");
+                                    //count2[0] =aux;
+
+
+
+                                    if (finalTipoPregunta ==0){
+                                        //individual, simple, sencilla
+                                        logicasencilla(finalIDP, finalEnun, finalI,aux);
+                                    }else{
+                                        logicaCompuesta(finalIDP,SuperEnun, finalEnun, finalI,aux);
+                                    }
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+                            }
+                        }
+
+                );
+                RequestQueue requestQueueNum = Volley.newRequestQueue(this);
+                requestQueueNum.add(jsORNum);
+
+
+
 
 
             } catch (JSONException e) {
@@ -219,10 +355,163 @@ public class Preguntas extends AppCompatActivity {
 
         }
 
+        CreandoBoton();
+
+        CreandoBoton();
+        CreandoBoton();
+
+    }
+
+    private void logicaCompuesta(int idp, String superEnun, String enun, int i1,int V) {
+        //Esto retorna el numero de imagenes por pregunta, deberia
+
+
+        if (V ==0){//no tiene imagenes
+            Logica_sin_imagenesC(idp,superEnun,enun,V,i1);
+        }else if (V ==-1){
+            Toast.makeText(this,"COmpuesta el valor esta siendo -1 : " + V, Toast.LENGTH_SHORT).show();
+        }else{
+            Logica_con_imagenesC(idp,superEnun,enun,V,i1);
+        }
+
     }
 
 
+    private void logicasencilla(int idp, String enun, int i1,int V) {
+
+        //Esto retorna el numero de imagenes por pregunta, deberia
+
+
+        if (V ==0){//no tiene imagenes
+            Logica_sin_imagenesS(idp,enun,V,i1);
+        }else if (V ==-1){
+            Toast.makeText(this,"Sencilla el valor esta siendo -1 : " + V, Toast.LENGTH_SHORT).show();
+        }else{
+            Logica_con_imagenesS(idp,enun,V,i1);
+        }
+
+    }
+
+    private void Logica_con_imagenesC(int idp, String superEnun, String enun, int v, int i1) {
+        //creacion de los text view al menos meter los enunciados
+        TextView TVDinamico = new TextView(this);
+        TVDinamico.setMovementMethod(new ScrollingMovementMethod());
+
+        TVDinamico.setText(enun);
+        TVDinamico.setId(i1);
+        TVDinamico.setTextColor(Color.BLACK);
+
+        LYinterno.addView(TVDinamico);
+    }
+
+    private void Logica_sin_imagenesC(int idp, String superEnun, String enun, int v, int i1) {
+
+        //creacion de los text view al menos meter los enunciados
+        TextView TVDinamico = new TextView(this);
+        TVDinamico.setMovementMethod(new ScrollingMovementMethod());
+
+        TVDinamico.setText(enun);
+        TVDinamico.setId(i1);
+        TVDinamico.setTextColor(Color.BLACK);
+
+        LYinterno.addView(TVDinamico);
+    }
+
+
+
+    private void Logica_con_imagenesS(int idp, String enun, int v, int i1) {
+        //creacion de los text view al menos meter los enunciados
+        TextView TVDinamico = new TextView(this);
+        TVDinamico.setMovementMethod(new ScrollingMovementMethod());
+
+        TVDinamico.setText(enun);
+        TVDinamico.setId(i1);
+        TVDinamico.setTextColor(Color.BLACK);
+
+        LYinterno.addView(TVDinamico);
+
+    }
+
+    private void Logica_sin_imagenesS(int idp, String enun, int v, int i1) {
+
+
+
+        //if tipo_respuesta eso lo averiguamos desde la tabla respuesta
+        /*if (tipo_respuesta ==0 ){
+            Logia_Imagen();
+        }else{
+            LogicaTexto();
+        }*/
+
+        //creacion de los text view al menos meter los enunciados
+        TextView TVDinamico = new TextView(this);
+        TVDinamico.setMovementMethod(new ScrollingMovementMethod());
+
+        TVDinamico.setText(enun);
+        TVDinamico.setId(i1);
+        TVDinamico.setTextColor(Color.BLACK);
+
+        LYinterno.addView(TVDinamico);
+
+
+
+        CreandoBoton();
+
+
+
+
+    }
+
+    //Numero de imagenes que tiene esta pregunta
+    //esto es un request
+    //al final esto no termino funcionando
+    private int NImagePRe(int idp) {
+
+
+        final int[] NumReturn = {-1};
+        String URlNum ="http://192.168.0.100/android/Pregunta/countimagenesPregunta.php?id="+idp;
+
+        JsonObjectRequest jsORNum = new JsonObjectRequest(
+                Request.Method.GET,
+                URlNum,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        int aux=0;
+                        try {
+
+                            // ID_BD = response.getInt("Id_persona");
+                            //return ID_BD;
+                            //entrnadoenelresponse(response);
+                            //CargarPruebas(ID_BD);
+                            //count(*)
+                            aux =response.getInt("count(*)");
+                            //count2[0] =aux;
+                            NumReturn[0] = aux;
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+
+        );
+        RequestQueue requestQueueNum = Volley.newRequestQueue(this);
+        requestQueueNum.add(jsORNum);
+
+        return  NumReturn[0];
+    }
+
     //Aqui es doonde llenamos el arreglo (matriz)
+    //Al final esta matriz como que no va a servir para nada
     private String[][] DatosResponse(JSONArray response) {
 
         String[][] Aux = new String[5][response.length()];
@@ -270,16 +559,6 @@ public class Preguntas extends AppCompatActivity {
         Toast.makeText(this,"Real tamaño arreglo "+ CountGS, Toast.LENGTH_SHORT).show();
         Toast.makeText(this,"tamaño arreglo por modulos "+ CountM, Toast.LENGTH_SHORT).show();
 
-             /*  for (int i = 0 ; i<Var.length;i++){
-                for (int j = 0 ; j<50;j++){
-                        z=j;
-
-                    //Var[i][j]
-                    Toast.makeText(this,"arreglo sobrepasado, "+ z + " limite", Toast.LENGTH_SHORT).show();
-
-                }
-
-            }*/
 
         try{
 
