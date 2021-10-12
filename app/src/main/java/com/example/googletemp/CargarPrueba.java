@@ -373,12 +373,6 @@ public class CargarPrueba extends AppCompatActivity {
                 JSONObject objeto2 = new JSONObject(response.get(i).toString());
                 //ArregloPreguntasIds[JF] = objeto2.getString("id_pregunta");
 
-               /* Pruebas.append(i+1 + " :");
-                Pruebas.append("    Nombre prueba: "+objeto2.getString("Nombre"));
-                // Pruebas.append("    Codigo: "+objeto2.getString("id_prueba"));
-                Pruebas.append("\n");*/
-
-
                 variable [0][i]=objeto2.getString("Nombre");
                 variable [1][i]=objeto2.getString("id_prueba");
 
