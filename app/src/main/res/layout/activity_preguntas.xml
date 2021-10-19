@@ -54,7 +54,7 @@
                 android:text="Button"
                 android:textColor="@color/white"
 
-                app:backgroundTint="#FFFFFF" />
+                app:backgroundTint="@color/white" />
         </LinearLayout>
 
     </ScrollView>

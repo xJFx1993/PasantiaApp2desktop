@@ -46,6 +46,8 @@ public class Preguntas extends AppCompatActivity {
     String IDP=null;
     TextView TVV=null;
 
+    int Numeracion = 1; // para controlar el for e imprimir el numero de preguntas correctamente , en orden 1 2 3 ...
+
     ProgressBar PBpruebas=null;
 
     String [][] Var = null;
@@ -70,7 +72,10 @@ public class Preguntas extends AppCompatActivity {
 
         ;
 
+
+
        vistas();
+       TExtviewModulo(modulo);
 
         mAuth = FirebaseAuth.getInstance();
         RQ= Volley.newRequestQueue(this);
@@ -101,12 +106,14 @@ public class Preguntas extends AppCompatActivity {
 
 
 
-        CreandoBoton();
+      /*  CreandoBoton();
 
         CreandoBoton();
-        CreandoBoton();
+        CreandoBoton();*/
 
     }
+
+
 
     private void CreandoBoton() {
 
@@ -273,20 +280,23 @@ public class Preguntas extends AppCompatActivity {
     private void InsertarPreguntas(JSONArray response) {
         //creacion de objetos dinamicos
         //aqui dentro van los if
+        //y aqui dentro se hace otra consulta, un count de imagenes por pregunta, numero de imagenes desde 0 , 1, 2
+
+
 
         for (int i1 =0 ; i1<response.length();i1++){
 
             int tipoPregunta=-1;
             String SuperEnun, Enun = null;
             int IDPregunta=-1;
-            int IDP=-1;
+            int IDPre=-1;
 
             try {
                 //JSONObject objeto = new JSONObject(String.valueOf(response.getJSONObject(i)));
                 JSONObject objeto2 = new JSONObject(response.get(i1).toString());
                 //ArregloPreguntasIds[JF] = objeto2.getString("id_pregunta");
 
-                IDP = Integer.parseInt(objeto2.getString("id_pregunta"));
+                IDPre = Integer.parseInt(objeto2.getString("id_pregunta"));
                 SuperEnun = objeto2.getString("Super_enunciado");
                 Enun = objeto2.getString("Enunciado");
                 // Aux[3][i] = objeto2.getString("modulo");
@@ -295,10 +305,10 @@ public class Preguntas extends AppCompatActivity {
                 tipoPregunta= Integer.parseInt(objeto2.getString("Tipo_pregunta"));
 
 
-                String URlNum ="http://192.168.0.100/android/Pregunta/countimagenesPregunta.php?id="+IDP;
+                String URlNum ="http://192.168.0.100/android/Pregunta/countimagenesPregunta.php?id="+IDPre;
 
                 int finalTipoPregunta = tipoPregunta;
-                int finalIDP = IDP;
+                int finalIDP = IDPre;
                 String finalEnun = Enun;
                 int finalI = i1;
                 JsonObjectRequest jsORNum = new JsonObjectRequest(
@@ -320,13 +330,15 @@ public class Preguntas extends AppCompatActivity {
                                     //count2[0] =aux;
 
 
-
+                                    //aqui empezaria lo que vendria siendo el arbol de IFs
                                     if (finalTipoPregunta ==0){
                                         //individual, simple, sencilla
-                                        logicasencilla(finalIDP, finalEnun, finalI,aux);
+                                        logicasencilla(finalIDP, finalEnun, finalI,aux,Numeracion);
                                     }else{
-                                        logicaCompuesta(finalIDP,SuperEnun, finalEnun, finalI,aux);
+                                        logicaCompuesta(finalIDP,SuperEnun, finalEnun, finalI,aux,Numeracion);
                                     }
+
+                                    Numeracion=Numeracion+1;
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -355,87 +367,108 @@ public class Preguntas extends AppCompatActivity {
 
         }
 
-        CreandoBoton();
+       /* CreandoBoton();
 
         CreandoBoton();
-        CreandoBoton();
+        CreandoBoton();*/
 
     }
 
-    private void logicaCompuesta(int idp, String superEnun, String enun, int i1,int V) {
+    private void logicaCompuesta(int idpre, String superEnun, String enun, int i1,int V , int Numeracion) {
         //Esto retorna el numero de imagenes por pregunta, deberia
+        //en V tenemos el valor de imagenes por pregunta
 
 
         if (V ==0){//no tiene imagenes
-            Logica_sin_imagenesC(idp,superEnun,enun,V,i1);
+            Logica_sin_imagenesC(idpre,superEnun,enun,V,i1,Numeracion);
         }else if (V ==-1){
             Toast.makeText(this,"COmpuesta el valor esta siendo -1 : " + V, Toast.LENGTH_SHORT).show();
         }else{
-            Logica_con_imagenesC(idp,superEnun,enun,V,i1);
+            Logica_con_imagenesC(idpre,superEnun,enun,V,i1,Numeracion);
         }
 
     }
 
 
-    private void logicasencilla(int idp, String enun, int i1,int V) {
+    private void logicasencilla(int idpre, String enun, int i1,int V, int Numeracion) {
 
         //Esto retorna el numero de imagenes por pregunta, deberia
 
 
         if (V ==0){//no tiene imagenes
-            Logica_sin_imagenesS(idp,enun,V,i1);
+            Logica_sin_imagenesS(idpre,enun,V,i1,Numeracion);
         }else if (V ==-1){
             Toast.makeText(this,"Sencilla el valor esta siendo -1 : " + V, Toast.LENGTH_SHORT).show();
         }else{
-            Logica_con_imagenesS(idp,enun,V,i1);
+            Logica_con_imagenesS(idpre,enun,V,i1,Numeracion);
         }
 
     }
 
-    private void Logica_con_imagenesC(int idp, String superEnun, String enun, int v, int i1) {
+    private void Logica_con_imagenesC(int idpre, String superEnun, String enun, int v, int i1, int Numeracion) {
+       //super enunciado
+        TextView TVDinamicoSE = new TextView(this);
+        TVDinamicoSE.setMovementMethod(new ScrollingMovementMethod());
+
+        TVDinamicoSE.setText((Numeracion) + ". " + superEnun);
+        TVDinamicoSE.setId(i1);
+        TVDinamicoSE.setTextColor(Color.BLACK);
+
+
         //creacion de los text view al menos meter los enunciados
         TextView TVDinamico = new TextView(this);
         TVDinamico.setMovementMethod(new ScrollingMovementMethod());
 
-        TVDinamico.setText(enun);
+        TVDinamico.setText(enun + " \n");
         TVDinamico.setId(i1);
         TVDinamico.setTextColor(Color.BLACK);
 
+        LYinterno.addView(TVDinamicoSE);
         LYinterno.addView(TVDinamico);
+
+        Numeracion++;
     }
 
-    private void Logica_sin_imagenesC(int idp, String superEnun, String enun, int v, int i1) {
+    private void Logica_sin_imagenesC(int idpre, String superEnun, String enun, int v, int i1, int Numeracion) {
+        //super enunciado
+        TextView TVDinamicoSE = new TextView(this);
+        TVDinamicoSE.setMovementMethod(new ScrollingMovementMethod());
+
+        TVDinamicoSE.setText((Numeracion) + ". " + superEnun);
+        TVDinamicoSE.setId(i1);
+        TVDinamicoSE.setTextColor(Color.BLACK);
 
         //creacion de los text view al menos meter los enunciados
         TextView TVDinamico = new TextView(this);
         TVDinamico.setMovementMethod(new ScrollingMovementMethod());
 
-        TVDinamico.setText(enun);
+        TVDinamico.setText(enun + " \n");
         TVDinamico.setId(i1);
         TVDinamico.setTextColor(Color.BLACK);
 
+        LYinterno.addView(TVDinamicoSE);
         LYinterno.addView(TVDinamico);
+
+        Numeracion++;
     }
 
 
 
-    private void Logica_con_imagenesS(int idp, String enun, int v, int i1) {
+    private void Logica_con_imagenesS(int idpre, String enun, int v, int i1, int Numeracion) {
         //creacion de los text view al menos meter los enunciados
         TextView TVDinamico = new TextView(this);
         TVDinamico.setMovementMethod(new ScrollingMovementMethod());
 
-        TVDinamico.setText(enun);
+        TVDinamico.setText((Numeracion) + ". " + enun + " \n");
         TVDinamico.setId(i1);
         TVDinamico.setTextColor(Color.BLACK);
 
         LYinterno.addView(TVDinamico);
+        Numeracion++;
 
     }
 
-    private void Logica_sin_imagenesS(int idp, String enun, int v, int i1) {
-
-
-
+    private void Logica_sin_imagenesS(int idpre, String enun, int v, int i1, int Numeracion) {
         //if tipo_respuesta eso lo averiguamos desde la tabla respuesta
         /*if (tipo_respuesta ==0 ){
             Logia_Imagen();
@@ -447,15 +480,15 @@ public class Preguntas extends AppCompatActivity {
         TextView TVDinamico = new TextView(this);
         TVDinamico.setMovementMethod(new ScrollingMovementMethod());
 
-        TVDinamico.setText(enun);
+        TVDinamico.setText((Numeracion) + ". " + enun + " \n");
         TVDinamico.setId(i1);
         TVDinamico.setTextColor(Color.BLACK);
 
         LYinterno.addView(TVDinamico);
 
+        Numeracion++;
 
-
-        CreandoBoton();
+        //CreandoBoton();
 
 
 
@@ -603,6 +636,84 @@ public class Preguntas extends AppCompatActivity {
 
     //request insert para almacenar las respuestas seleccionadas
     public void AlmacenarRepuestas(View r){
+
+    }
+
+    //textview del modulo
+    private void TExtviewModulo(String modulo) {
+
+        //Integer.parseInt(modulo)
+        TextView TVDinamicoM = new TextView(this);
+        TVDinamicoM.setMovementMethod(new ScrollingMovementMethod());
+
+        int Test = Integer.parseInt(modulo);
+        switch (Test)
+        {
+            case  1:
+            //Ejecuta la acción cuando Test=1
+                //creacion de los text view al menos meter los enunciados
+
+                TVDinamicoM.setText("Matematicas \n");
+                TVDinamicoM.setId(0);
+                TVDinamicoM.setTextColor(Color.BLACK);
+                TVDinamicoM.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+
+                LYinterno.addView(TVDinamicoM);
+            break;
+            case 2:
+            //Ejecuta la acción cuando Test=2
+                //creacion de los text view al menos meter los enunciados
+
+                TVDinamicoM.setText("Lectura critica \n");
+                TVDinamicoM.setId(0);
+                TVDinamicoM.setTextColor(Color.BLACK);
+                TVDinamicoM.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+
+                LYinterno.addView(TVDinamicoM);
+            break;
+            case 3:
+                //Ejecuta la acción cuando Test=3
+                //creacion de los text view al menos meter los enunciados
+
+
+                TVDinamicoM.setText("Sociales y ciudadanas \n");
+                TVDinamicoM.setId(0);
+                TVDinamicoM.setTextColor(Color.BLACK);
+                TVDinamicoM.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+
+                LYinterno.addView(TVDinamicoM);
+                break;
+            case 4:
+                //Ejecuta la acción cuando Test=4
+                //creacion de los text view al menos meter los enunciados
+
+
+                TVDinamicoM.setText("Ciencias naturales \n");
+                TVDinamicoM.setId(0);
+                TVDinamicoM.setTextColor(Color.BLACK);
+                TVDinamicoM.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+
+                LYinterno.addView(TVDinamicoM);
+                break;
+            case 5:
+                //Ejecuta la acción cuando Test=5
+                //creacion de los text view al menos meter los enunciados
+
+
+                TVDinamicoM.setText("Ingles \n");
+                TVDinamicoM.setId(0);
+                TVDinamicoM.setTextColor(Color.BLACK);
+                TVDinamicoM.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+
+                LYinterno.addView(TVDinamicoM);
+                break;
+
+            default://sin valor por default
+                //Ejecuta la acción cuando Test tiene un valor distinto
+                break;
+        }
+
+        // Integer.parseInt(modulo)
 
     }
 
