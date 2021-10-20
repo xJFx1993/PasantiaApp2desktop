@@ -15,11 +15,7 @@
         <activity android:name=".Preguntas"></activity>
         <activity android:name=".CargarPrueba">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity android:name=".segundaPRamaJFcommit" />
@@ -58,7 +54,11 @@
         <activity android:name=".Sesion2" />
         <activity android:name=".MainActivity2">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
         <activity android:name=".RG" />
